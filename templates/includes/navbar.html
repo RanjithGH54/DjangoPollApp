@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'home' %}"></a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId" style="color: lightgreen;">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0" style="color: lightgreen;">
+            <li class="nav-item active" style="color: lightgreen;">
+                <a class="nav-link" href="{% url 'home' %}" style="color:purple;font-family: 'Times New Roman', Times, serif;font-weight: bold;">Home <span class="sr-only">(current)</span></a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'polls:list' %}" style="color:purple;font-family: 'Times New Roman', Times, serif;font-weight: bold;">Polls</a>
+            </li>
+            {% endif %}
+        </ul>
+        <div class="navbar-nav ml-auto">
+            {% if request.user.is_authenticated %}
+            <a class="nav-link" href="{% url 'polls:list_by_user' %}" style="color:purple;font-family: 'Times New Roman', Times, serif;font-weight: bold;">My Polls</a>
+            <a class="nav-link" href="{% url 'accounts:logout' %}" style="color:purple;font-family: 'Times New Roman', Times, serif;font-weight: bold;">Logout</a>
+            {% else %}
+            <a class="nav-link" href="{% url 'accounts:login' %}" style="color:purple;font-family: 'Times New Roman', Times, serif;font-weight: bold;">Login</a>
+            <a class="nav-link" href="{% url 'accounts:register' %}" style="color:purple;font-family: 'Times New Roman', Times, serif;font-weight: bold;">Register</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>

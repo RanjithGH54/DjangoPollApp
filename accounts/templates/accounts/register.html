@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="border: 2px solid black;padding: 50px;font-size: large;box-shadow: 5px 5px 40px gray;">
+    <div class="row center" style="font-size: large;">
+        <div class="col-md-6 offset-md-3">
+            <p style="text-align: center;">Already have an account? <a href="{% url 'accounts:login' %}">Login Here</a></p>
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="text-align: center;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary" >Sign Up</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
